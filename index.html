@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>布料信息</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/airtable@0.11.1/build/airtable.browser.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/airtable@0.11.6/build/airtable.browser.js"></script>
 </head>
 <body class="bg-gray-100 p-8">
     <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
@@ -45,119 +45,10 @@
                 
                 <div class="font-bold text-gray-700" id="thicknessLabel">布身厚度：</div>
                 <div id="thickness"></div>
-                
-                <div class="font-bold text-gray-700" id="codeLabel">碼數：</div>
-                <div id="code"></div>
-                
-                <div class="font-bold text-gray-700" id="weightKgLabel">公斤數(KG)：</div>
-                <div id="weightKg"></div>
-            </div>
-            <div class="mt-6">
-                <div class="font-bold text-gray-700 mb-2" id="descriptionLabel">敘述：</div>
-                <div id="description" class="text-gray-600"></div>
             </div>
         </div>
     </div>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const translations = {
-            zh: {
-                pageTitle: "布料信息",
-                nameLabel: "品名：",
-                compositionLabel: "成分比例：",
-                widthLabel: "可裁幅寬：",
-                fullWidthLabel: "全幅寬：",
-                weightLabel: "碼重：",
-                gsmLabel: "米平方重：",
-                stretchWidthLabel: "橫向彈性倍數：",
-                stretchLengthLabel: "直向彈性倍數：",
-                thicknessLabel: "布身厚度：",
-                codeLabel: "碼數：",
-                weightKgLabel: "公斤數(KG)：",
-                descriptionLabel: "敘述："
-            },
-            en: {
-                pageTitle: "Fabric Information",
-                nameLabel: "Name:",
-                compositionLabel: "Composition:",
-                widthLabel: "Cuttable Width:",
-                fullWidthLabel: "Full Width:",
-                weightLabel: "Weight:",
-                gsmLabel: "GSM:",
-                stretchWidthLabel: "Width Stretch:",
-                stretchLengthLabel: "Length Stretch:",
-                thicknessLabel: "Thickness:",
-                codeLabel: "Code:",
-                weightKgLabel: "Weight (KG):",
-                descriptionLabel: "Description:"
-            },
-            ja: {
-                pageTitle: "生地情報",
-                nameLabel: "品名：",
-                compositionLabel: "組成：",
-                widthLabel: "裁断可能幅：",
-                fullWidthLabel: "全幅：",
-                weightLabel: "重量：",
-                gsmLabel: "平方メートル重量：",
-                stretchWidthLabel: "横伸縮性：",
-                stretchLengthLabel: "縦伸縮性：",
-                thicknessLabel: "厚さ：",
-                codeLabel: "コード：",
-                weightKgLabel: "重量 (KG)：",
-                descriptionLabel: "説明："
-            }
-        };
-
-        function updateLanguage(lang) {
-            const elements = translations[lang];
-            for (const [key, value] of Object.entries(elements)) {
-                document.getElementById(key).textContent = value;
-            }
-        }
-
-        document.getElementById('languageSelect').addEventListener('change', function() {
-            updateLanguage(this.value);
-        });
-
-        // 初始化語言
-        updateLanguage('zh');
-
-        // 確保 Airtable 已經加載
-        if (typeof Airtable !== 'undefined') {
-            // Airtable 配置
-            const base = new Airtable({apiKey: 'YOUR_API_KEY'}).base('YOUR_BASE_ID');
-
-            // 獲取 URL 參數
-            const urlParams = new URLSearchParams(window.location.search);
-            const recordId = urlParams.get('id');
-
-            if (recordId) {
-                base('YOUR_TABLE_NAME').find(recordId, function(err, record) {
-                    if (err) {
-                        console.error(err);
-                        return;
-                    }
-                    document.getElementById('name').textContent = record.get('Name') || '';
-                    document.getElementById('composition').textContent = record.get('Composition') || '';
-                    document.getElementById('width').textContent = record.get('Cuttable Width') || '';
-                    document.getElementById('fullWidth').textContent = record.get('Full Width') || '';
-                    document.getElementById('weight').textContent = record.get('Weight') || '';
-                    document.getElementById('gsm').textContent = record.get('GSM') || '';
-                    document.getElementById('stretchWidth').textContent = record.get('Width Stretch') || '';
-                    document.getElementById('stretchLength').textContent = record.get('Length Stretch') || '';
-                    document.getElementById('thickness').textContent = record.get('Thickness') || '';
-                    document.getElementById('code').textContent = record.get('Code') || '';
-                    document.getElementById('weightKg').textContent = record.get('Weight (KG)') || '';
-                    document.getElementById('description').textContent = record.get('Description') || '';
-                });
-            } else {
-                console.error('No record ID provided in the URL');
-            }
-        } else {
-            console.error('Airtable library not loaded');
-        }
-    });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
