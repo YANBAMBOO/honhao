@@ -1,9 +1,9 @@
 // 使用個人訪問令牌初始化 Airtable
 Airtable.configure({
     endpointUrl: 'https://api.airtable.com',
-    apiKey: 'YOUR_PERSONAL_ACCESS_TOKEN'
+    apiKey: 'patuloqpJSwkeWv6R.67b10fd782e5d8f7c6282d8a231a5277a95506264a1b8a89f7ddb71f7fdb1ec9'
 });
-const base = Airtable.base('YOUR_BASE_ID');
+const base = Airtable.base('appHOmHqvBWFFZaEF/tbljlfUpQ1rYo8rAJ');
 
 // 獲取 URL 參數中的記錄 ID
 const urlParams = new URLSearchParams(window.location.search);
